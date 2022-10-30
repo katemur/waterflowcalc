@@ -1,0 +1,65 @@
+item;Consumer;Measure;TotAdvDay;HotAdvDay;TotMaxHour;HotMaxHour;TotDevSec;HotDevSec;TotDevHour;HotDevHour;Hours
+1.1;apart without bath;1 consumer;70;0;5;0;0.2;0.2;50;50;24
+1.2;apart with water heater;1 consumer;110;0;8.1;0;0.3;0.3;300;300;24
+1.3;apart with gas water heater;1 consumer;120;0;8.7;0;0.3;0.3;300;300;24
+1.4;apart with centalised how water no bath;1 consumer;130;50;8.2;4.5;0.2;0.14;100;60;24
+1.5;apart with small bath;1 consumer;160;65;10.3;5.7;0.3;0.2;300;200;24
+1.5;apart with bath over 1500 mm;1 consumer;180;70;11.6;6.5;0.3;0.2;300;200;24
+2.1;dorm with shared shower;1 man;85;45;10.4;5.4;0.2;0.14;100;60;24
+2.2;dorm with showers in every room;1 man;110;50;12.5;7;0.2;0.14;100;60;24
+2.3;dorm with shared kitchen and shower for every block;1 man;120;70;10.2;6.38;0.2;0.14;100;60;24
+3.1;hotel with shared bathroom;1 man;120;60;12.5;7;0.3;0.2;300;200;24
+3.2;hotel with bathroom in every room;1 man;230;120;19;10.2;0.2;0.14;115;80;24
+3.3;hotel with bathroom in 25% of rooms;1 man;200;85;22.4;8.8;0.3;0.2;250;180;24
+3.4;hotel with bathroom in 75% of rooms;1 man;250;130;28;12.8;0.3;0.2;280;190;24
+3.5;hotel with bathroom in up to 100% of rooms;1 man;300;160;30;13.6;0.3;0.2;300;200;24
+4.1;hospital with shared bathrooms;1 bed;115;65;8.4;4.6;0.2;0.14;100;60;24
+4.2;hospital with bathrooms near wards;1 bed;200;75;12;6.55;0.3;0.2;300;200;24
+4.3;infective hospital;1 bed;240;95;14;8.1;0.2;0.14;200;120;24
+5.1;health resort with shared showers;1 room;130;55;12.5;7;0.2;0.14;100;60;24
+5.2;health resort with shower in every room;1 room;150;65;12.5;7;0.2;0.14;100;60;24
+5.3;health resort with bath in every room;1 room;200;100;10;4.2;0.3;0.2;300;200;24
+6;day hospital;1 patient per shift;13;4.4;2.6;1;0.2;0.14;80;60;10
+7.1;day nursery with canteen with premade foot;1 child;22;10;9.5;3.8;0.14;0.1;100;60;10
+7.2;day nursery with canteen and laundry;1 child;60;21;18;6.8;0.2;0.14;100;60;10
+7.3;24-hour nursery with canteen with premade foot;1 child;40;20;10;3.8;0.14;0.1;100;60;24
+7.4;24-hour nursery with canteen and laundry;1 child;90;25;18;6.8;0.2;0.14;100;60;24
+8.1;mechanized laundry;1 kg of dry clothes;75;21.3;75;21.3;0;0;0;0;0
+8.2;non-mechanical laundry;1 kg of dry clothes;40;12.8;40;12.8;0.3;0.2;300;200;0
+9;administration buildin;1 empoyee;12;4.5;4;1.7;0.14;0.1;80;60;8
+10;university or college with ym showers and caf_;1 student and 1 teacher;17.2;5;2.7;1;0.14;0.1;100;60;8
+11;university lab;1 device per shift;220;95;43.2;18.4;0.2;0.2;200;200;0
+12.1;university or collee with gym showers and canteen with premade food;1 student and 1 teacher;16;5;3.5;1.2;0.14;0.1;100;60;8
+12.2;the same as 12.1 but with longer day;1 student and 1 teacher;12;2.9;3.1;0.85;0.14;0.1;100;60;8
+13.1;boarding school;1 student and 1 teacher;9;2.7;3.1;0.85;0.14;0.1;100;60;24
+13.2;boarding school with bedrooms;1 bed;70;30;9;5.1;0.14;0.1;100;60;0
+14.1;pharmacy;1 room;12;4;4;1.7;0.14;0.1;60;40;12
+14.2;pharmacy with a lab;1 room;310;47;32;7;0.2;0.2;300;200;12
+15.1;canteen with a dinnin area;1 meal;12;3.4;12;3.4;0.3;0.2;300;200;0
+15.2;canteen without dinin area;1 meal;10;2.6;10;2.6;0.3;0.2;300;200;0
+16.1;gtocery store;1 worker per shift or 20m2 of store area;250;55;37;8.2;0.3;0.2;300;200;8
+16.2;department store;1 worker per shift;12;4;4;1.7;0.14;0.1;80;60;8
+17;hairdressing saloon;1 worker per shift;56;28;9;4;0.14;0.1;60;40;12
+18;cinema;1 seat;4;1.3;0.5;0.17;0.14;0.1;80;50;4
+19;club;1 seat;8.6;2.2;0.9;0.34;0.14;0.1;80;50;0
+20.1;theatre. audience;1 seat;10;4;0.9;0.26;0.14;0.1;60;40;4
+20.2;theatre. artist;1 artist;40;21;3.4;1.9;0.14;0.1;80;50;8
+21.1;Stadium and gym. audience;1 seat;3;0.85;0.3;0.85;0.14;0.1;60;40;4
+21.2;stadium and gym. exercisers;1 exerciser;50;25;50;25;0.2;0.14;80;50;11
+21.3;stadium and gym. sportsmen;1 sportsman;100;51;100;51;0.2;0.14;80;50;11
+22.1;recharching the swimming pool;% of the swimmin pool capacity;10;0;0;0;0;0;0;0;8
+22.2;swimmin pool. audience;1 seat;3;0.85;0.3;0.09;0.14;0.1;60;40;6
+22.3;swmmin pool. sportsmen;1 sportsman;100;51;100;51;0.2;0.14;80;50;8
+23.1;Sauna with wash-basins and showers;1 visitor;180;100;180;100;0.4;0.4;180;120;3
+23.2;sauna with wellness tecniques and showers;1 visitor;290;160;290;160;0.4;0.4;290;190;3
+23.3;sauna with showers;1 visitor;360;200;360;200;0.2;0.14;360;240;3
+23.4;sauna with baths;1 visitor;540;300;540;300;0.3;0.2;540;360;3
+24;industrial plants with showers;1 shower per shift;500;230;500;230;0.2;0.14;500;270;0
+25.1;production facility with heat radiation above 84 kJ;1 worker per shift;45;20.4;14.1;7.1;0.14;0.1;60;40;6
+25.2;other production facilities;1 worker per shift;25;9.4;9.4;3.7;0.14;0.1;60;40;8
+26.1;watering the grass;1 m2;3;0;0;0;0;0;0;0;0
+26.2;watering the football field;1 m2;0.5;0;0;0;0;0;0;0;0
+26.2;watering other sports dacilities;1 m2;1.5;0;0;0;0;0;0;0;0
+26.3;watering pavements. squares;1 m2;0.5;0;0;0;0;0;0;0;0
+26.4;watering the lawn. flowers;1 m2;5;0;0;0;0;0;0;0;0
+27;fillng the ice rink;1 m2;0.5;0;0;0;0;0;0;0;0
