@@ -1,4 +1,7 @@
 from cs50 import SQL
+import numpy as np
+import pandas as pd
+import pdfkit as pdf
 import os, sys
 db = SQL("sqlite:///tables.db")
 def interpolation(n):
@@ -29,6 +32,15 @@ def interpolation(n):
 def custom_split(str):
   item, n_tot, n_hot, u, shifts = str.split(" ")
   return {"item": float(item), "n_tot": int(n_tot), "n_hot": int(n_hot), "u": int(u), "shifts": int(shifts)}
+def table_pdf(df, status):
+  df.to_html('f.html')
+  if status == 'tot':
+    output = 'table_tot.pdf'
+  elif status == 'cold':
+    output = 'table_cold.pdf'
+  else:
+    output = 'table_hot.pdf'
+  pdf.from_file('f.html', output)
 class Consumer:
   def __init__(self, item, n_tot, n_hot, u, shift):
     # item from a2 table
@@ -81,35 +93,91 @@ class Consumer:
     self.q_hr_mid_tot = self.q_day_tot / (shift * self.hours)
     self.q_hr_mid_hot = self.q_day_hot / (shift * self.hours)
     self.q_hr_mid_cold = self.q_day_cold / (shift * self.hours)
-input_info = []
-print("Usage: Item Ntot Nhot U Shifts")
-#getting user's input until he hits enter
-while True:
-  inp = input("Consumer: ")
-  if inp == "":
-    break
-  #checking for correct number and type of arguments
-  try:
-    split_inp = custom_split(inp)
-  except ValueError:
-    sys.exit("Incorrect arguments")
-    break
-  # checking if the user gave an item that exists in a2 table
-  item_check = db.execute("SELECT * FROM a2 WHERE item = ?", split_inp.get("item"))
-  if not item_check:
-    sys.exit("Incorrect item")
-  # add 1 input to a list of inputs
-  input_info.append(inp)
+  def __str__(self):
+    return f'total \n U: {self.u} N tot: {self.n_tot} P tot: {self.p_tot} alpha tot: {self.alpha_tot} q sec tot: {self.q_sec_tot} \n P tot hr:{self.p_tot_hr} alpha tot hr: {self.alpha_tot_hr} q hr tot: {self.q_hr_tot} \n q day tot: {self.q_day_tot} hours: {self.hours}'
+def main():  
+  input_info = []
+  print("Usage: Item Ntot Nhot U Shifts")
+  #getting user's input until he enters an empty line
+  while True:
+    inp = input("Consumer: ")
+    if inp == "":
+      break
+    #checking for correct number and type of arguments
+    try:
+      split_inp = custom_split(inp)
+    except ValueError:
+      sys.exit("Incorrect arguments")
+      break
+    # checking if the user gave an item that exists in a2 table
+    item_check = db.execute("SELECT * FROM a2 WHERE item = ?", split_inp.get("item"))
+    if not item_check:
+      sys.exit("Incorrect item")
+    # add 1 input to a list of inputs
+    input_info.append(inp)
+  #  create a list of Consumer objects
+  consumers = []
+  # creating objects using input info and adding them to a list
+  for cons in input_info:
+    res = custom_split(cons)
+    item = res.get("item")
+    n_tot = res.get("n_tot")
+    n_hot = res.get("n_hot")
+    u = res.get("u")
+    shifts = res.get("shifts")
+    consumers.append(Consumer(item, n_tot, n_hot, u, shifts))
+  # creating lists if all data to export
+  u_res = []
+  n_tot_res = []
+  alpha_tot_res = []
+  q_sec_tot_res = []
+  p_tot_hr_res = []
+  alpha_tot_hr_res = []
+  q_hr_tot_res = []
+  q_day_tot_res = []
+  n_hot_res = []
+  alpha_hot_res = []
+  q_sec_hot_res = []
+  p_hot_hr_res = []
+  alpha_hot_hr_res = []
+  q_hr_hot_res = []
+  q_day_hot_res = []
+  alpha_cold_res = []
+  q_sec_cold_res = []
+  p_cold_hr_res = []
+  alpha_cold_hr_res = []
+  q_hr_cold_res = []
+  q_day_cold_res = []
+  for i in range(len(consumers)):
+    u_res.append(consumers[i].u)
+    n_tot_res.append(consumers[i].n_tot)
+    alpha_tot_res.append(consumers[i].alpha_tot)
+    q_sec_tot_res.append(consumers[i].q_sec_tot)
+    p_tot_hr_res.append(consumers[i].p_tot_hr)
+    alpha_tot_hr_res.append(consumers[i].alpha_tot_hr)
+    q_hr_tot_res.append(consumers[i].q_hr_tot)
+    q_day_tot_res.append(consumers[i].q_day_tot)
+    n_hot_res.append(consumers[i].n_hot)
+    alpha_hot_res.append(consumers[i].alpha_hot)
+    q_sec_hot_res.append(consumers[i].q_sec_hot)
+    p_hot_hr_res.append(consumers[i].p_hot_hr)
+    alpha_hot_hr_res.append(consumers[i].alpha_hot_hr)
+    q_hr_hot_res.append(consumers[i].q_hr_hot)
+    q_day_hot_res.append(consumers[i].q_day_hot)
+    alpha_cold_res.append(consumers[i].alpha_cold)
+    q_sec_cold_res.append(consumers[i].q_sec_cold)
+    p_cold_hr_res.append(consumers[i].p_cold_hr)
+    alpha_cold_hr_res.append(consumers[i].alpha_cold_hr)
+    q_hr_cold_res.append(consumers[i].q_hr_cold)
+    q_day_cold_res.append(consumers[i].q_day_cold)
+  # creating a resulting dataframe
+  df_hot = pd.DataFrame.from_dict(dict([("U", u_res), ("N", n_hot_res), ("alpha", alpha_hot_res), ("Q sec", q_sec_hot_res), ("P hr", p_hot_hr_res), ("alpha hr", alpha_hot_hr_res), ("Q hr", q_hr_hot_res), ("Q day", q_day_hot_res)]))
+  table_pdf(df_hot, "hot")
+  df_tot = pd.DataFrame.from_dict(dict([("U", u_res), ("N", n_tot_res), ("alpha", alpha_tot_res), ("Q sec", q_sec_tot_res), ("P hr", p_tot_hr_res), ("alpha hr", alpha_tot_hr_res), ("Q hr", q_hr_tot_res), ("Q day", q_day_tot_res)]))
+  table_pdf(df_tot, "tot")
   
-#  create a list of Consumer objects
-consumers = []
-# creating objects using input info and adding them to a list
-for cons in input_info:
-  res = custom_split(cons)
-  item = res.get("item")
-  n_tot = res.get("n_tot")
-  n_hot = res.get("n_hot")
-  u = res.get("u")
-  shifts = res.get("shifts")
-  consumers.append(Consumer(item, n_tot, n_hot, u, shifts))
-  print(consumers[0].q_day_tot)
+  df_cold = pd.DataFrame.from_dict(dict([("U", u_res), ("N", n_tot_res), ("alpha", alpha_cold_res), ("Q sec", q_sec_cold_res), ("P hr", p_cold_hr_res), ("alpha hr", alpha_cold_hr_res), ("Q hr", q_hr_cold_res), ("Q day", q_day_cold_res)]))
+  table_pdf(df_cold, "cold")
+      
+if __name__== "__main__":
+  main()
