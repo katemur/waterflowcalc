@@ -127,6 +127,7 @@ def main():
     shifts = res.get("shifts")
     consumers.append(Consumer(item, n_tot, n_hot, u, shifts))
   # creating lists if all data to export
+  item_res=[]
   u_res = []
   n_tot_res = []
   alpha_tot_res = []
@@ -149,6 +150,7 @@ def main():
   q_hr_cold_res = []
   q_day_cold_res = []
   for i in range(len(consumers)):
+    item_res.append(consumers[i].item)
     u_res.append(consumers[i].u)
     n_tot_res.append(consumers[i].n_tot)
     alpha_tot_res.append(consumers[i].alpha_tot)
@@ -171,12 +173,12 @@ def main():
     q_hr_cold_res.append(consumers[i].q_hr_cold)
     q_day_cold_res.append(consumers[i].q_day_cold)
   # creating a resulting dataframe
-  df_hot = pd.DataFrame.from_dict(dict([("U", u_res), ("N", n_hot_res), ("alpha", alpha_hot_res), ("Q sec", q_sec_hot_res), ("P hr", p_hot_hr_res), ("alpha hr", alpha_hot_hr_res), ("Q hr", q_hr_hot_res), ("Q day", q_day_hot_res)]))
+  df_hot = pd.DataFrame.from_dict(dict([("Item", item_res), ("U", u_res), ("N", n_hot_res), ("alpha", alpha_hot_res), ("Q sec", q_sec_hot_res), ("P hr", p_hot_hr_res), ("alpha hr", alpha_hot_hr_res), ("Q hr", q_hr_hot_res), ("Q day", q_day_hot_res)]))
   table_pdf(df_hot, "hot")
-  df_tot = pd.DataFrame.from_dict(dict([("U", u_res), ("N", n_tot_res), ("alpha", alpha_tot_res), ("Q sec", q_sec_tot_res), ("P hr", p_tot_hr_res), ("alpha hr", alpha_tot_hr_res), ("Q hr", q_hr_tot_res), ("Q day", q_day_tot_res)]))
+  df_tot = pd.DataFrame.from_dict(dict([("Item", item_res), ("U", u_res), ("N", n_tot_res), ("alpha", alpha_tot_res), ("Q sec", q_sec_tot_res), ("P hr", p_tot_hr_res), ("alpha hr", alpha_tot_hr_res), ("Q hr", q_hr_tot_res), ("Q day", q_day_tot_res)]))
   table_pdf(df_tot, "tot")
   
-  df_cold = pd.DataFrame.from_dict(dict([("U", u_res), ("N", n_tot_res), ("alpha", alpha_cold_res), ("Q sec", q_sec_cold_res), ("P hr", p_cold_hr_res), ("alpha hr", alpha_cold_hr_res), ("Q hr", q_hr_cold_res), ("Q day", q_day_cold_res)]))
+  df_cold = pd.DataFrame.from_dict(dict([("Item", item_res), ("U", u_res), ("N", n_tot_res), ("alpha", alpha_cold_res), ("Q sec", q_sec_cold_res), ("P hr", p_cold_hr_res), ("alpha hr", alpha_cold_hr_res), ("Q hr", q_hr_cold_res), ("Q day", q_day_cold_res)]))
   table_pdf(df_cold, "cold")
       
 if __name__== "__main__":
